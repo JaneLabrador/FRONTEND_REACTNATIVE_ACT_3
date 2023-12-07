@@ -22,7 +22,7 @@ import fetchServices from "../Services/fetchServices";
 
 export default function SignupScreen() {
   const navigation = useNavigation();
-  const navigator = useNavigation();
+  // const navigator = useNavigation();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -60,7 +60,7 @@ export default function SignupScreen() {
         return false;
       }
 
-      const url = "http://192.168.254.110:8000/api/register";
+      const url = "http://192.168.254.123:8000/api/register";
       const data = {
         name,
         email,
@@ -80,6 +80,7 @@ export default function SignupScreen() {
       console.log("Debug");
 
       console.debug(e.toString());
+      console.log("error");
       showToast(e.toString());
     } finally {
       setLoading(false);
@@ -189,9 +190,13 @@ export default function SignupScreen() {
                   padding: 10,
                   borderRadius: 16,
                 }}
-                onPress={() => navigation.navigate("LandingScreen")}
+                disabled={loading}
+                loading={loading}
+                
               >
                 <Text
+                disabled={loading}
+                loading={loading}
                   className="text-xl font-bold text-white text-center"
                   onPress={handleRegistration}
                 >
